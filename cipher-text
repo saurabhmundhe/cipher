@@ -1,0 +1,34 @@
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+key = 3
+
+def encrypt(plaintext):
+    ciphertext = ''
+    for char in plaintext.upper():
+        if char.isalpha():
+            index = alphabet.index(char)
+            new_index = (index + key) % len(alphabet)
+            ciphertext += alphabet[new_index]
+        else:
+            ciphertext += char
+    return ciphertext
+
+def decrypt(ciphertext):
+    plaintext = ''
+    for char in ciphertext:
+        if char.isalpha():
+            index = alphabet.index(char)
+            new_index = (index - key) % len(alphabet)
+            plaintext += alphabet[new_index]
+        else:
+            plaintext += char
+    return plaintext
+
+
+plaintext = input("Enter your plaintext : ")
+ciphertext = encrypt(plaintext)
+print("Plaintext:", plaintext)
+print("Ciphertext:", ciphertext)
+
+decrypted_text = decrypt(ciphertext)
+print("Decrypted text:", decrypted_text)
